@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>CampusConnect</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            CampusConnect
+        </div>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Problems</a>
+            <a href="#">Login</a>
+        </nav>
+
+    </header>
+
+
+    <div class="hero">
+
+        <h1>CampusConnect</h1>
+
+        <p>See a problem? Report it. Track it. Solve it together.</p>
+
+        <button class="report-btn">Report a Problem</button>
+
+    </div>
+    <section class="categories">
+
+    <h2>What are you facing?</h2>
+
+    <div class="category-container">
+
+        <div class="category-card">📶 Wi-Fi</div>
+
+        <div class="category-card">💧 Water</div>
+
+        <div class="category-card">⚡ Electricity</div>
+
+        <div class="category-card">🍱 Canteen</div>
+
+        <div class="category-card">🪑 Furniture</div>
+
+        <div class="category-card">🚨 Safety</div>
+
+    </div>
+    
+    <div id="submittedProblems"></div>
+
+</section>
+<section class="problems">
+
+    <h2>📊 Campus Problems</h2>
+
+    <div class="problem-container">
+
+        <div class="problem-card">
+            <h3>📶 Wi-Fi</h3>
+            <p>32 students affected</p>
+            <span class="high">🔴 High Priority</span>
+        </div>
+
+        <div class="problem-card">
+            <h3>💧 Water</h3>
+            <p>18 students affected</p>
+            <span class="medium">🟠 Medium Priority</span>
+        </div>
+
+        <div class="problem-card">
+            <h3>🍱 Canteen</h3>
+            <p>14 students affected</p>
+            <span class="medium">🟠 Medium Priority</span>
+        </div>
+
+    </div>
+
+</section>
+<section class="report-section">
+
+    <h2>🚨 Report a Problem</h2>
+
+    <form id="problemForm">
+
+        <label>What is the problem?</label>
+
+        <select id="problemType">
+            <option>Wi-Fi / Network</option>
+            <option>Water</option>
+            <option>Electricity</option>
+            <option>Canteen</option>
+            <option>Furniture</option>
+            <option>Safety</option>
+            <option>Other</option>
+        </select>
+
+
+        <label>Describe the problem</label>
+
+        <textarea id="description" placeholder="Tell us what happened..."></textarea>
+
+
+        <label>Location</label>
+
+        <input id="location" type="text" placeholder="Example: Block A, 2nd floor">
+
+
+        <label>Risk level</label>
+
+        <select id="riskLevel">
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+            <option>Critical</option>
+        </select>
+
+
+        <label>How many students are affected?</label>
+        <input id="affectedCount" type="number" placeholder="Example: 20">
+
+
+        <label>How long has this problem existed?</label>
+        <input id="duration" type="text" placeholder="Example: 3 days">
+
+
+        <button class="submit-btn" type="submit">
+            Submit Problem
+        </button>
+
+    </form>
+
+</section>
+<script src="script.js"></script>
+
+</body>
+</html>
