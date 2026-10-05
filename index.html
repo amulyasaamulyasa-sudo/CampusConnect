@@ -1,142 +1,632 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>CampusConnect</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header class="navbar">
+    <!-- ================= LOGIN PAGE ================= -->
 
-        <div class="logo">
-            CampusConnect
+    <div id="loginPage" class="login-page">
+
+        <div class="login-card">
+
+            <div class="brand-icon">🏫</div>
+
+            <h1>CampusConnect</h1>
+
+            <p class="login-subtitle">
+                See a problem. Report it. Track it. Solve it together.
+            </p>
+
+            <div class="login-tabs">
+
+                <button id="studentTab" class="login-tab active">
+                    🎓 Student
+                </button>
+
+                <button id="adminTab" class="login-tab">
+                    🛡️ Admin
+                </button>
+
+            </div>
+
+            <!-- Student Login -->
+
+            <form id="studentLoginForm">
+
+                <label>Student Name</label>
+
+                <input
+                    type="text"
+                    id="studentName"
+                    placeholder="Enter your name"
+                    required
+                >
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="studentEmail"
+                    placeholder="student@example.com"
+                    required
+                >
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="studentPassword"
+                    placeholder="Enter password"
+                    required
+                >
+
+                <button type="submit" class="primary-btn">
+                    Login as Student 🎓
+                </button>
+
+            </form>
+
+
+            <!-- Admin Login -->
+
+            <form id="adminLoginForm" class="hidden">
+
+                <label>Admin Email</label>
+
+                <input
+                    type="email"
+                    id="adminEmail"
+                    placeholder="admin@campusconnect.com"
+                    required
+                >
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="adminPassword"
+                    placeholder="Enter admin password"
+                    required
+                >
+
+                <button type="submit" class="primary-btn">
+                    Login as Admin 🛡️
+                </button>
+
+                <p class="demo-info">
+                    Demo Admin:<br>
+                    admin@campusconnect.com<br>
+                    Password: admin123
+                </p>
+
+            </form>
+
+            <p id="loginMessage" class="login-message"></p>
+
         </div>
-
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Problems</a>
-            <a href="#">Login</a>
-        </nav>
-
-    </header>
-
-
-    <div class="hero">
-
-        <h1>CampusConnect</h1>
-
-        <p>See a problem? Report it. Track it. Solve it together.</p>
-
-        <button class="report-btn">Report a Problem</button>
 
     </div>
-    <section class="categories">
 
-    <h2>What are you facing?</h2>
 
-    <div class="category-container">
+    <!-- ================= MAIN APP ================= -->
 
-        <div class="category-card">📶 Wi-Fi</div>
+    <div id="app" class="hidden">
 
-        <div class="category-card">💧 Water</div>
+        <!-- NAVBAR -->
 
-        <div class="category-card">⚡ Electricity</div>
+        <header class="navbar">
 
-        <div class="category-card">🍱 Canteen</div>
+            <div class="logo">
+                🏫 CampusConnect
+            </div>
 
-        <div class="category-card">🪑 Furniture</div>
+            <nav>
 
-        <div class="category-card">🚨 Safety</div>
+                <button class="nav-btn" onclick="showHome()">
+                    Home
+                </button>
+
+                <button class="nav-btn" onclick="showProblems()">
+                    Problems
+                </button>
+
+                <button
+                    id="reportNavBtn"
+                    class="nav-btn"
+                    onclick="showReport()"
+                >
+                    Report
+                </button>
+
+                <button
+                    id="dashboardNavBtn"
+                    class="nav-btn"
+                    onclick="showDashboard()"
+                >
+                    Dashboard
+                </button>
+
+                <button
+                    class="logout-btn"
+                    onclick="logout()"
+                >
+                    Logout
+                </button>
+
+            </nav>
+
+        </header>
+
+
+        <!-- USER BAR -->
+
+        <div class="user-bar">
+
+            <div>
+                Logged in as:
+                <strong id="loggedUserName"></strong>
+            </div>
+
+            <span id="loggedUserRole"></span>
+
+        </div>
+
+
+        <!-- ================= HOME ================= -->
+
+        <main id="homeSection" class="page-section">
+
+            <section class="hero">
+
+                <span class="hero-badge">
+                    🌱 Better Campus. Better Community.
+                </span>
+
+                <h1>
+                    Build a Better<br>
+                    <span>Campus Together.</span>
+                </h1>
+
+                <p>
+                    Report campus problems, find people facing the same issue,
+                    and track progress until it gets resolved.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <button
+                        class="primary-btn hero-btn"
+                        onclick="showReport()"
+                    >
+                        🚨 Report a Problem
+                    </button>
+
+                    <button
+                        class="secondary-btn"
+                        onclick="showProblems()"
+                    >
+                        🔎 Explore Problems
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- CATEGORY SECTION -->
+
+            <section class="categories-section">
+
+                <h2>What are you facing?</h2>
+
+                <p class="section-subtitle">
+                    Choose a category and find problems reported by your campus community.
+                </p>
+
+                <div class="category-grid">
+
+                    <button onclick="filterCategory('Wi-Fi / Network')">
+                        📶
+                        <span>Wi-Fi</span>
+                    </button>
+
+                    <button onclick="filterCategory('Water')">
+                        💧
+                        <span>Water</span>
+                    </button>
+
+                    <button onclick="filterCategory('Electricity')">
+                        ⚡
+                        <span>Electricity</span>
+                    </button>
+
+                    <button onclick="filterCategory('Canteen')">
+                        🍱
+                        <span>Canteen</span>
+                    </button>
+
+                    <button onclick="filterCategory('Furniture')">
+                        🪑
+                        <span>Furniture</span>
+                    </button>
+
+                    <button onclick="filterCategory('Safety')">
+                        🚨
+                        <span>Safety</span>
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- STATISTICS -->
+
+            <section class="stats-section">
+
+                <div class="stat-card">
+                    <span>📋</span>
+                    <strong id="totalProblems">0</strong>
+                    <p>Total Problems</p>
+                </div>
+
+                <div class="stat-card">
+                    <span>👥</span>
+                    <strong id="totalAffected">0</strong>
+                    <p>People Affected</p>
+                </div>
+
+                <div class="stat-card">
+                    <span>🔄</span>
+                    <strong id="activeProblems">0</strong>
+                    <p>Being Investigated</p>
+                </div>
+
+                <div class="stat-card">
+                    <span>✅</span>
+                    <strong id="resolvedProblems">0</strong>
+                    <p>Resolved</p>
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- ================= PROBLEMS ================= -->
+
+        <section id="problemsSection" class="page-section hidden">
+
+            <div class="section-heading">
+
+                <h2>📊 Campus Problems</h2>
+
+                <p>
+                    See what your campus community is experiencing.
+                </p>
+
+            </div>
+
+            <div class="filter-container">
+
+                <button
+                    class="filter-btn active"
+                    onclick="filterCategory('All')"
+                >
+                    All
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterCategory('Wi-Fi / Network')"
+                >
+                    📶 Wi-Fi
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterCategory('Water')"
+                >
+                    💧 Water
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterCategory('Electricity')"
+                >
+                    ⚡ Electricity
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterCategory('Canteen')"
+                >
+                    🍱 Canteen
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterCategory('Furniture')"
+                >
+                    🪑 Furniture
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterCategory('Safety')"
+                >
+                    🚨 Safety
+                </button>
+
+            </div>
+
+            <div id="problemList" class="problem-grid"></div>
+
+        </section>
+
+
+        <!-- ================= REPORT ================= -->
+
+        <section id="reportSection" class="page-section hidden">
+
+            <div class="section-heading">
+
+                <h2>🚨 Report a Problem</h2>
+
+                <p>
+                    Tell us what is happening on your campus.
+                </p>
+
+            </div>
+
+            <form id="problemForm" class="report-form">
+
+                <label>What is the problem?</label>
+
+                <select id="problemType" required>
+
+                    <option value="">
+                        Select category
+                    </option>
+
+                    <option>Wi-Fi / Network</option>
+                    <option>Water</option>
+                    <option>Electricity</option>
+                    <option>Canteen</option>
+                    <option>Furniture</option>
+                    <option>Safety</option>
+                    <option>Other</option>
+
+                </select>
+
+
+                <label>Describe the problem</label>
+
+                <textarea
+                    id="description"
+                    placeholder="Tell us what happened..."
+                    required
+                ></textarea>
+
+
+                <label>Location</label>
+
+                <input
+                    type="text"
+                    id="location"
+                    placeholder="Example: Hostel Block A, 2nd floor"
+                    required
+                >
+
+
+                <label>Risk level</label>
+
+                <select id="riskLevel" required>
+
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
+                    <option>Critical</option>
+
+                </select>
+
+
+                <label>How many people are affected?</label>
+
+                <input
+                    type="number"
+                    id="affectedCount"
+                    min="1"
+                    placeholder="Example: 20"
+                    required
+                >
+
+
+                <label>How long has this problem existed?</label>
+
+                <input
+                    type="text"
+                    id="duration"
+                    placeholder="Example: 3 days"
+                    required
+                >
+
+
+                <button type="submit" class="primary-btn full-btn">
+                    Submit Problem 🚀
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- ================= STUDENT DASHBOARD ================= -->
+
+        <section id="studentDashboard" class="page-section hidden">
+
+            <div class="section-heading">
+
+                <h2>🎓 My Dashboard</h2>
+
+                <p>
+                    Track your reports and updates from the campus administration.
+                </p>
+
+            </div>
+
+            <div class="dashboard-cards">
+
+                <div class="mini-stat">
+                    <strong id="myReportCount">0</strong>
+                    <span>My Reports</span>
+                </div>
+
+                <div class="mini-stat">
+                    <strong id="myActiveCount">0</strong>
+                    <span>Active</span>
+                </div>
+
+                <div class="mini-stat">
+                    <strong id="myResolvedCount">0</strong>
+                    <span>Resolved</span>
+                </div>
+
+            </div>
+
+            <h3 class="sub-heading">
+                🔔 My Updates
+            </h3>
+
+            <div id="studentNotifications"></div>
+
+            <h3 class="sub-heading">
+                📋 My Reports
+            </h3>
+
+            <div id="myReports" class="problem-grid"></div>
+
+        </section>
+
+
+        <!-- ================= ADMIN DASHBOARD ================= -->
+
+        <section id="adminDashboard" class="page-section hidden">
+
+            <div class="admin-header">
+
+                <div>
+
+                    <span class="admin-badge">
+                        🛡️ ADMIN
+                    </span>
+
+                    <h2>Admin Dashboard</h2>
+
+                    <p>
+                        Monitor and manage all campus complaints.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-cards">
+
+                <div class="mini-stat">
+                    <strong id="adminTotal">0</strong>
+                    <span>Total Reports</span>
+                </div>
+
+                <div class="mini-stat">
+                    <strong id="adminPending">0</strong>
+                    <span>Pending</span>
+                </div>
+
+                <div class="mini-stat">
+                    <strong id="adminProgress">0</strong>
+                    <span>Investigating</span>
+                </div>
+
+                <div class="mini-stat">
+                    <strong id="adminResolved">0</strong>
+                    <span>Resolved</span>
+                </div>
+
+            </div>
+
+
+            <h3 class="sub-heading">
+                📋 All Reported Problems
+            </h3>
+
+            <div id="adminReports"></div>
+
+        </section>
 
     </div>
-    
-    <div id="submittedProblems"></div>
 
-</section>
-<section class="problems">
 
-    <h2>📊 Campus Problems</h2>
+    <!-- ================= CHATBOT ================= -->
 
-    <div class="problem-container">
+    <button id="chatButton" class="chat-button">
+        💬
+    </button>
 
-        <div class="problem-card">
-            <h3>📶 Wi-Fi</h3>
-            <p>32 students affected</p>
-            <span class="high">🔴 High Priority</span>
+    <div id="chatBox" class="chat-box hidden">
+
+        <div class="chat-header">
+            🤖 CampusConnect Assistant
         </div>
 
-        <div class="problem-card">
-            <h3>💧 Water</h3>
-            <p>18 students affected</p>
-            <span class="medium">🟠 Medium Priority</span>
+        <div id="chatMessages" class="chat-messages">
+
+            <p class="bot-message">
+                Hi! 👋 How can I help you?
+            </p>
+
         </div>
 
-        <div class="problem-card">
-            <h3>🍱 Canteen</h3>
-            <p>14 students affected</p>
-            <span class="medium">🟠 Medium Priority</span>
+        <div class="chat-input">
+
+            <input
+                type="text"
+                id="chatInput"
+                placeholder="Ask something..."
+            >
+
+            <button id="sendChat">
+                ➤
+            </button>
+
         </div>
 
     </div>
 
-</section>
-<section class="report-section">
 
-    <h2>🚨 Report a Problem</h2>
+    <footer>
 
-    <form id="problemForm">
+        <p>
+            © 2026 CampusConnect
+            <br>
+            Building a better campus together 💙
+        </p>
 
-        <label>What is the problem?</label>
-
-        <select id="problemType">
-            <option>Wi-Fi / Network</option>
-            <option>Water</option>
-            <option>Electricity</option>
-            <option>Canteen</option>
-            <option>Furniture</option>
-            <option>Safety</option>
-            <option>Other</option>
-        </select>
+    </footer>
 
 
-        <label>Describe the problem</label>
-
-        <textarea id="description" placeholder="Tell us what happened..."></textarea>
-
-
-        <label>Location</label>
-
-        <input id="location" type="text" placeholder="Example: Block A, 2nd floor">
-
-
-        <label>Risk level</label>
-
-        <select id="riskLevel">
-            <option>Low</option>
-            <option>Medium</option>
-            <option>High</option>
-            <option>Critical</option>
-        </select>
-
-
-        <label>How many students are affected?</label>
-        <input id="affectedCount" type="number" placeholder="Example: 20">
-
-
-        <label>How long has this problem existed?</label>
-        <input id="duration" type="text" placeholder="Example: 3 days">
-
-
-        <button class="submit-btn" type="submit">
-            Submit Problem
-        </button>
-
-    </form>
-
-</section>
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>

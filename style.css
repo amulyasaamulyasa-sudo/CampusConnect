@@ -1,195 +1,658 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f5f7fb;
-    color: #1f2937;
+    background: #f5f7fb;
+    color: #172033;
 }
-h1 {
+
+/* ================= GENERAL ================= */
+
+.hidden {
+    display: none !important;
+}
+
+button {
+    font-family: inherit;
+}
+
+.page-section {
+    min-height: 70vh;
+}
+
+
+/* ================= LOGIN ================= */
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #eef6ff, #f8fbff);
+    padding: 20px;
+}
+
+.login-card {
+    width: 430px;
+    max-width: 100%;
+    background: white;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    text-align: center;
+}
+
+.brand-icon {
     font-size: 48px;
-    margin-bottom: 10px;
 }
-.report-btn{
-    background-color: #2563eb;
+
+.login-card h1 {
+    margin: 10px 0;
+    font-size: 32px;
+}
+
+.login-subtitle {
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+.login-tabs {
+    display: flex;
+    gap: 10px;
+    margin: 30px 0 20px;
+}
+
+.login-tab {
+    flex: 1;
+    padding: 13px;
+    border: 1px solid #dbe2ea;
+    background: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login-tab.active {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+}
+
+.login-card form {
+    text-align: left;
+}
+
+.login-card label,
+.report-form label {
+    display: block;
+    margin: 16px 0 7px;
+    font-weight: bold;
+}
+
+.login-card input,
+.report-form input,
+.report-form select,
+.report-form textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d5dce5;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+}
+
+.login-card input:focus,
+.report-form input:focus,
+.report-form select:focus,
+.report-form textarea:focus {
+    border-color: #2563eb;
+}
+
+.primary-btn {
+    background: #2563eb;
     color: white;
     border: none;
-    padding: 12px 24px;
-    font-size: 16px;
-    border-radius: 8px;
+    padding: 13px 22px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
     cursor: pointer;
 }
-.hero {
-    text-align: center;
-    padding: 80px 20px;
+
+.primary-btn:hover {
+    background: #1d4ed8;
 }
-.hero {
-    text-align: center;
-    padding: 80px 20px;
+
+.login-card .primary-btn {
+    width: 100%;
+    margin-top: 25px;
 }
+
+.demo-info {
+    background: #f1f5f9;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 13px;
+    color: #475569;
+    margin-top: 18px;
+}
+
+.login-message {
+    color: #dc2626;
+    margin-top: 15px;
+}
+
+
+/* ================= NAVBAR ================= */
+
 .navbar {
+    background: white;
+    padding: 18px 6%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
-    background-color: white;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .logo {
-    font-size: 24px;
+    font-size: 23px;
     font-weight: bold;
 }
 
 .navbar nav {
     display: flex;
-    gap: 25px;
+    align-items: center;
+    gap: 10px;
 }
 
-.navbar a {
-    text-decoration: none;
-    color: #1f2937;
+.nav-btn,
+.logout-btn {
+    border: none;
+    background: transparent;
+    padding: 10px 14px;
+    cursor: pointer;
+    border-radius: 8px;
     font-weight: 500;
 }
-.categories {
-    padding: 40px 50px;
-    text-align: center;
+
+.nav-btn:hover {
+    background: #eff6ff;
+    color: #2563eb;
 }
 
-.categories h2 {
-    font-size: 32px;
-    margin-bottom: 30px;
+.logout-btn {
+    background: #fee2e2;
+    color: #dc2626;
 }
 
-.category-container {
+.user-bar {
+    background: #eff6ff;
+    padding: 10px 6%;
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-.category-card {
-    background-color: white;
-    padding: 25px 35px;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-    font-size: 18px;
-    cursor: pointer;
-    min-width: 120px;
+    justify-content: space-between;
+    color: #334155;
+    font-size: 14px;
 }
 
-.category-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
 
-.problems {
-    padding: 50px;
+/* ================= HERO ================= */
+
+.hero {
     text-align: center;
+    padding: 90px 20px 70px;
 }
 
-.problems h2 {
-    font-size: 32px;
-    margin-bottom: 30px;
+.hero-badge {
+    background: #dbeafe;
+    color: #2563eb;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 14px;
 }
 
-.problem-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+.hero h1 {
+    font-size: 55px;
+    margin: 25px 0 15px;
 }
 
-.problem-card {
-    background-color: white;
-    width: 220px;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+.hero h1 span {
+    color: #2563eb;
 }
 
-.problem-card h3 {
-    font-size: 22px;
-}
-
-.high {
-    font-weight: bold;
-}
-
-.medium {
-    font-weight: bold;
-}
-.report-section {
-    padding: 60px 20px;
-    text-align: center;
-}
-
-.report-section h2 {
-    font-size: 32px;
-    margin-bottom: 30px;
-}
-
-.report-section form {
-    max-width: 600px;
+.hero p {
+    max-width: 650px;
     margin: auto;
-    background-color: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    text-align: left;
+    color: #64748b;
+    line-height: 1.7;
 }
 
-.report-section label {
-    display: block;
-    margin-top: 15px;
-    margin-bottom: 6px;
+.hero-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.hero-btn {
+    padding: 15px 25px;
+}
+
+.secondary-btn {
+    background: white;
+    border: 1px solid #dbe2ea;
+    padding: 15px 25px;
+    border-radius: 10px;
+    cursor: pointer;
     font-weight: bold;
 }
 
-.report-section input,
-.report-section select,
-.report-section textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 15px;
-    box-sizing: border-box;
+
+/* ================= CATEGORIES ================= */
+
+.categories-section {
+    padding: 50px 6%;
+    text-align: center;
 }
 
-.report-section textarea {
-    height: 100px;
-    resize: vertical;
+.categories-section h2,
+.section-heading h2 {
+    font-size: 32px;
 }
 
-.submit-btn {
-    margin-top: 25px;
-    width: 100%;
-    background-color: #2563eb;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
+.section-subtitle,
+.section-heading p {
+    color: #64748b;
 }
-#submittedProblems {
+
+.category-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
     margin-top: 30px;
 }
 
-#submittedProblems .problem-card {
-    width: auto;
-    box-sizing: border-box;
+.category-grid button {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 15px;
+    padding: 25px 10px;
+    cursor: pointer;
+    font-size: 27px;
+    transition: 0.2s;
 }
 
+.category-grid button span {
+    display: block;
+    font-size: 15px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.category-grid button:hover {
+    transform: translateY(-5px);
+    border-color: #2563eb;
+}
+
+
+/* ================= STATS ================= */
+
+.stats-section,
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 30px 6%;
+}
+
+.stat-card,
+.mini-stat {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+}
+
+.stat-card span {
+    font-size: 25px;
+}
+
+.stat-card strong,
+.mini-stat strong {
+    display: block;
+    font-size: 30px;
+    margin-top: 8px;
+}
+
+.stat-card p,
+.mini-stat span {
+    color: #64748b;
+}
+
+
+/* ================= SECTIONS ================= */
+
+.section-heading {
+    text-align: center;
+    padding: 60px 20px 20px;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 20px 6%;
+}
+
+.filter-btn {
+    border: 1px solid #dbe2ea;
+    background: white;
+    padding: 10px 17px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background: #2563eb;
+    color: white;
+}
+
+
+/* ================= PROBLEM CARDS ================= */
+
+.problem-grid {
+    max-width: 1200px;
+    margin: 20px auto 70px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.problem-card {
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+}
+
+.problem-card h3 {
+    margin-top: 0;
+}
+
+.problem-card p {
+    color: #64748b;
+    line-height: 1.5;
+}
+
+.problem-meta {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.priority-high {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.priority-medium {
+    color: #ea580c;
+    font-weight: bold;
+}
+
+.priority-low {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+.status {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-submitted {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-investigating {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status-resolved {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.facing-btn {
+    margin-top: 12px;
+    border: 1px solid #2563eb;
+    color: #2563eb;
+    background: white;
+    padding: 9px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.facing-btn:hover {
+    background: #eff6ff;
+}
+
+
+/* ================= REPORT FORM ================= */
+
+.report-form {
+    background: white;
+    max-width: 650px;
+    margin: 20px auto 70px;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+.report-form textarea {
+    height: 110px;
+    resize: vertical;
+}
+
+.full-btn {
+    width: 100%;
+    margin-top: 25px;
+}
+
+
+/* ================= DASHBOARD ================= */
+
+.sub-heading {
+    max-width: 1200px;
+    margin: 35px auto 15px;
+    padding: 0 20px;
+}
+
+.admin-header {
+    max-width: 1200px;
+    margin: auto;
+    padding: 50px 20px 10px;
+}
+
+.admin-badge {
+    background: #ede9fe;
+    color: #6d28d9;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.notification {
+    max-width: 1200px;
+    margin: 10px auto;
+    padding: 15px 20px;
+    background: #eff6ff;
+    border-left: 4px solid #2563eb;
+    border-radius: 8px;
+}
+
+.admin-report {
+    max-width: 1200px;
+    margin: 15px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+}
+
+.admin-report-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.admin-report select {
+    padding: 10px;
+    border: 1px solid #dbe2ea;
+    border-radius: 8px;
+}
+
+
+/* ================= CHAT ================= */
+
+.chat-button {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 55px;
+    height: 55px;
+    border: none;
+    border-radius: 50%;
+    background: #2563eb;
+    color: white;
+    font-size: 23px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    z-index: 500;
+}
+
+.chat-box {
+    position: fixed;
+    right: 25px;
+    bottom: 90px;
+    width: 320px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    z-index: 500;
+}
+
+.chat-header {
+    background: #2563eb;
+    color: white;
+    padding: 15px;
+    font-weight: bold;
+}
+
+.chat-messages {
+    height: 250px;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.bot-message {
+    background: #eff6ff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.chat-input {
+    display: flex;
+    border-top: 1px solid #eee;
+}
+
+.chat-input input {
+    flex: 1;
+    border: none;
+    padding: 12px;
+    outline: none;
+}
+
+.chat-input button {
+    border: none;
+    background: #2563eb;
+    color: white;
+    padding: 0 15px;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #172033;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 50px;
+}
+
+
+/* ================= MOBILE ================= */
+
 @media (max-width: 900px) {
-    #submittedProblems {
+
+    .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .problem-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .stats-section,
+    .dashboard-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
 }
 
 @media (max-width: 600px) {
-    #submittedProblems {
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .problem-grid {
         grid-template-columns: 1fr;
     }
+
+    .stats-section,
+    .dashboard-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .navbar nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
 }
