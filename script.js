@@ -1108,3 +1108,294 @@ if (currentUser) {
     openApplication();
 
 }
+// ================= CHATBOT =================
+
+const chatButton = document.getElementById("chatButton");
+const chatBox = document.getElementById("chatBox");
+const chatInput = document.getElementById("chatInput");
+const chatMessages = document.getElementById("chatMessages");
+
+if (chatButton) {
+
+    chatButton.addEventListener("click", function () {
+
+        chatBox.classList.toggle("hidden");
+
+        if (!chatBox.classList.contains("hidden")) {
+            chatInput.focus();
+        }
+
+    });
+
+}
+
+
+function sendChatMessage() {
+
+    const message = chatInput.value.trim();
+
+    if (message === "") {
+        return;
+    }
+
+    // Show user message
+    const userMessage = document.createElement("p");
+
+    userMessage.className = "user-message";
+    userMessage.textContent = message;
+
+    chatMessages.appendChild(userMessage);
+
+
+    // Generate CampusConnect response
+    const reply = getChatbotReply(message);
+
+
+    setTimeout(function () {
+
+        const botMessage = document.createElement("p");
+
+        botMessage.className = "bot-message";
+        botMessage.textContent = reply;
+
+        chatMessages.appendChild(botMessage);
+
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    }, 500);
+
+
+    chatInput.value = "";
+
+}
+
+
+function getChatbotReply(message) {
+
+    const text = message.toLowerCase().trim();
+
+    // 👋 Greetings
+    if (
+        text.includes("hello") ||
+        text.includes("hi") ||
+        text.includes("hey") ||
+        text.includes("good morning") ||
+        text.includes("good evening")
+    ) {
+        return "Hi! 👋 I'm the CampusConnect Assistant. I can help you report campus problems, track complaints, understand problem status, and use CampusConnect.";
+    }
+
+
+    // 📢 How to report a problem
+    if (
+        text.includes("how to report") ||
+        text.includes("how can i report") ||
+        text.includes("report a problem") ||
+        text.includes("make a complaint") ||
+        text.includes("submit complaint")
+    ) {
+        return "To report a problem: 1️⃣ Log in as a student. 2️⃣ Open 'Report'. 3️⃣ Select the problem category. 4️⃣ Describe the issue clearly. 5️⃣ Enter the location. 6️⃣ Select the risk level and affected people. 7️⃣ Submit the report. Your complaint will then appear in your dashboard.";
+    }
+
+
+    // 📶 Wi-Fi / Internet
+    if (
+        text.includes("wifi") ||
+        text.includes("wi-fi") ||
+        text.includes("internet") ||
+        text.includes("network")
+    ) {
+        return "For a Wi-Fi or network problem, report the exact location and describe what is happening. For example: 'Wi-Fi is not working in Block A hostel since 3 days.' Also mention approximately how many students are affected. This helps the admin understand the impact.";
+    }
+
+
+    // 🚰 Water
+    if (
+        text.includes("water") ||
+        text.includes("tap") ||
+        text.includes("drinking water")
+    ) {
+        return "For a water problem, report the exact location, such as hostel block, floor, or building. Mention whether there is no water, dirty water, leakage, or another issue. You can also mention how many people are affected.";
+    }
+
+
+    // ⚡ Electricity
+    if (
+        text.includes("electricity") ||
+        text.includes("power") ||
+        text.includes("current") ||
+        text.includes("light") ||
+        text.includes("fan")
+    ) {
+        return "For an electricity problem, report the location and explain whether it is a power cut, damaged light, fan problem, socket issue, or another electrical problem. If there is a safety risk, mark the report as high risk.";
+    }
+
+
+    // 🍴 Canteen / Food
+    if (
+        text.includes("canteen") ||
+        text.includes("food") ||
+        text.includes("mess") ||
+        text.includes("meal")
+    ) {
+        return "You can report canteen or food-related problems through CampusConnect. Describe the issue clearly, mention the canteen or mess location, and include how many students are affected.";
+    }
+
+
+    // 🧹 Cleanliness
+    if (
+        text.includes("clean") ||
+        text.includes("cleanliness") ||
+        text.includes("garbage") ||
+        text.includes("toilet") ||
+        text.includes("waste")
+    ) {
+        return "For cleanliness problems, report the exact location and describe the issue. For example: 'The hostel washroom on the second floor has not been cleaned for two days.' Add the number of affected people if you know it.";
+    }
+
+
+    // 🪑 Furniture
+    if (
+        text.includes("chair") ||
+        text.includes("desk") ||
+        text.includes("bench") ||
+        text.includes("furniture")
+    ) {
+        return "Furniture problems can also be reported. Mention the classroom, laboratory, hostel room, or other location and explain what is damaged or missing.";
+    }
+
+
+    // 🛡️ Safety
+    if (
+        text.includes("safety") ||
+        text.includes("danger") ||
+        text.includes("unsafe") ||
+        text.includes("emergency")
+    ) {
+        return "If you notice a campus safety problem, report it immediately through CampusConnect and select the appropriate high-risk level. For an immediate emergency or danger to someone, contact your campus emergency/security service directly as well.";
+    }
+
+
+    // 📍 Location
+    if (
+        text.includes("location") ||
+        text.includes("where") ||
+        text.includes("place")
+    ) {
+        return "When reporting a problem, give the most specific location you know — for example, 'Girls Hostel Block A, 2nd Floor' or 'CSE Block, Room 204'. A clear location helps the admin find the problem faster.";
+    }
+
+
+    // 📊 Track / Status
+    if (
+        text.includes("track") ||
+        text.includes("status") ||
+        text.includes("complaint status") ||
+        text.includes("where is my complaint")
+    ) {
+        return "You can track your complaints from your Dashboard. A report can move through these stages: Submitted → Investigating → Resolved. If the admin updates the status, the student can see the update in the dashboard.";
+    }
+
+
+    // 👥 Same problem / affected students
+    if (
+        text.includes("facing this too") ||
+        text.includes("same problem") ||
+        text.includes("affected") ||
+        text.includes("support")
+    ) {
+        return "If another student is experiencing the same problem, they can use 'I'm facing this too' instead of creating another duplicate complaint. This increases the affected-user count and helps show the real impact of the issue.";
+    }
+
+
+    // 👨‍💼 Admin
+    if (
+        text.includes("admin") ||
+        text.includes("administrator")
+    ) {
+        return "The admin dashboard allows the administrator to view reported problems, see reporter details, check locations and impact, and update the status of complaints.";
+    }
+
+
+    // 🔐 Login
+    if (
+        text.includes("login") ||
+        text.includes("log in") ||
+        text.includes("sign in") ||
+        text.includes("password")
+    ) {
+        return "CampusConnect has separate Student and Admin login options. Students can log in to report and track problems. Administrators can log in to view complaints and update their status.";
+    }
+
+
+    // 💡 What is CampusConnect?
+    if (
+        text.includes("what is campusconnect") ||
+        text.includes("what is this") ||
+        text.includes("about campusconnect")
+    ) {
+        return "CampusConnect is a campus problem reporting and tracking platform. Students and staff can report issues, find others facing the same problem, and track progress until the issue is resolved.";
+    }
+
+
+    // 🧠 Why use CampusConnect?
+    if (
+        text.includes("why") &&
+        (
+            text.includes("campusconnect") ||
+            text.includes("use this")
+        )
+    ) {
+        return "CampusConnect helps prevent duplicate complaints, shows how many people are affected, gives administrators organized information, and makes it easier for students to track what happens after they report a problem.";
+    }
+
+
+    // 📝 Example problem
+    if (
+        text.includes("example") ||
+        text.includes("sample complaint")
+    ) {
+        return "Example: 'Wi-Fi is unavailable in Girls Hostel Block A, second floor, for the last 3 days. Around 25 students are affected.' A detailed report like this gives the admin useful information to investigate the problem.";
+    }
+
+
+    // 🙏 Thanks
+    if (
+        text.includes("thank") ||
+        text.includes("thanks")
+    ) {
+        return "You're welcome! 💙 I'm always here to help you use CampusConnect.";
+    }
+
+
+    // ❓ Default response
+    return "I can help you with CampusConnect! 🤖 Try asking me things like: 'How do I report a problem?', 'My hostel Wi-Fi is not working', 'How can I track my complaint?', 'What does Investigating mean?', or 'What can the admin see?'";
+}
+
+
+// Send message when button is clicked
+
+const sendChat = document.getElementById("sendChat");
+
+if (sendChat) {
+
+    sendChat.addEventListener("click", sendChatMessage);
+
+}
+
+
+// Send message when Enter is pressed
+
+if (chatInput) {
+
+    chatInput.addEventListener("keypress", function (event) {
+
+        if (event.key === "Enter") {
+
+            sendChatMessage();
+
+        }
+
+    });
+
+}
