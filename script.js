@@ -1,3 +1,11 @@
+const SUPABASE_URL = "https://yggylbmqrgfgsmoraivw.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_LQxD1w-2awtEhy5Cb5Xa0A_6-kcnhz-";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
+console.log("Supabase connected:", supabaseClient);
 // =====================================================
 // CAMPUSCONNECT
 // COMPLETE FRONTEND DEMO SYSTEM
@@ -61,45 +69,60 @@ adminTab.addEventListener("click", function () {
 
 // ================= STUDENT LOGIN =================
 
-studentLoginForm.addEventListener("submit", function (event) {
-
+studentLoginForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    const name =
-        document.getElementById("studentName").value.trim();
-
-    const email =
-        document.getElementById("studentEmail").value.trim();
-
-    const password =
-        document.getElementById("studentPassword").value;
+    const name = document.getElementById("studentName").value.trim();
+    const email = document.getElementById("studentEmail").value.trim();
+    const password = document.getElementById("studentPassword").value;
 
     if (!name || !email || !password) {
-        loginMessage.textContent =
-            "Please fill all details.";
+        loginMessage.textContent = "Please fill all details.";
         return;
     }
 
+    loginMessage.textContent = "Creating your account...";
 
-    currentUser = {
+    try {
+        const { data, error } = await supabaseClient.auth.signUp({
+            email: email,
+            password: password,
+            options: {
+                data: {
+                    name: name,
+                    role: "student"
+                }
+            }
+        });
 
-        name: name,
+        if (error) {
+            loginMessage.textContent = error.message;
+            return;
+        }
 
-        email: email,
+        if (data.session && data.user) {
+            currentUser = {
+                id: data.user.id,
+                name: name,
+                email: data.user.email,
+                role: "student"
+            };
 
-        role: "student"
+            localStorage.setItem(
+                "currentUser",
+                JSON.stringify(currentUser)
+            );
 
-    };
-
-
-    localStorage.setItem(
-        "currentUser",
-        JSON.stringify(currentUser)
-    );
-
-
-    openApplication();
-
+            openApplication();
+        } else {
+            loginMessage.textContent =
+                "Account created! Please check your email to confirm your account before logging in.";
+        }
+    } catch (error) {
+        loginMessage.textContent =
+            "Connection error. Please try again.";
+        console.error(error);
+    }
 });
 
 
